@@ -32,3 +32,27 @@ NewThread(function() {
   }
 })
 ```
+
+Usages to cancel a thread from running:
+```
+local warmup = NewThread(function(){
+  printl("Warmup ends in 20s")
+  yield 10.0
+  printl("Warmup ends in 10s")
+  yield 10.0
+  printl("Warmup ends!")
+})
+
+CancelThread(warmup) // Only "Warmup ends in 20s" gets printed 
+
+local warmup2 = NewThread(function(){
+  printl("Warmup ends in 20s")
+  if (end_early)
+    yield "kill" // This will end the thread early.
+  else
+    yield 10.0
+  printl("Warmup ends in 10s")
+  yield 10.0
+  printl("Warmup ends!")
+})
+```
