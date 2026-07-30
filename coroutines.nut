@@ -23,7 +23,7 @@
 
 if (!("Coroutine" in getroottable())) ::Coroutine <- {}
 ::Coroutine.coroutine_delays <- {}
-::Coroutine.coroutine_entity <- null
+if (!("coroutine_entity" in Coroutine)) Coroutine.coroutine_entity <- null
 
 // ------------------------------------------------------------
 // Creates the thread. Optionally pass in extra arguments if needed. 
